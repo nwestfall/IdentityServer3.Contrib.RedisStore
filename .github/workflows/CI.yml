@@ -14,7 +14,7 @@ jobs:
         with:
           msbuild-architecture: x86
       - name: nuget restore IdentityServer3.Contrib.RedisStore
-        run: nuget restore
+        run: nuget restore -PackagesDirectory ./packages
         working-directory: IdentityServer3.Contrib.RedisStore
       - name: build IdentityServer3.Contrib.RedisStore
         run: msbuild IdentityServer3.Contrib.RedisStore.sln /p:Configuration="Release" /p:BuildPlatform="Any CPU"
