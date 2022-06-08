@@ -18,7 +18,6 @@ jobs:
         working-directory: IdentityServer3.Contrib.RedisStore
       - name: build IdentityServer3.Contrib.RedisStore
         run: msbuild IdentityServer3.Contrib.RedisStore.sln /p:Configuration="Release" /p:BuildPlatform="Any CPU"
-        working-directory: IdentityServer3.Contrib.RedisStore
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
         with:
