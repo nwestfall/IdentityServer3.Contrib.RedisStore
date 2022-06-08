@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.1
+        with:
+          msbuild-architecture: x86
+      - name: nuget restore IdentityServer3.Contrib.RedisStore
+        run: nuget restore
+        working-directory: IdentityServer3.Contrib.RedisStore
+      - name: build IdentityServer3.Contrib.RedisStore
+        run: msbuild IdentityServer3.Contrib.RedisStore.sln /p:Configuration="Release" /p:BuildPlatform="Any CPU"
+        working-directory: IdentityServer3.Contrib.RedisStore
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: IdentityServer3.Contrib.RedisStorems
+          path: IdentityServer3.Contrib.RedisStore
+      
